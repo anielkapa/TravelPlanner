@@ -1,0 +1,52 @@
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.trips{
+  @include flexbox;
+  flex-flow: column;
+  width: 100%;
+  min-height: 400px;
+  max-width: 1200px;
+  margin: 10px auto;
+  margin-top: 50px;
+  
+  .row {
+    width: 100%;
+    height: auto;
+    @include flexbox;
+    align-content: stretch;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin: 5px;
+    @for $i from 1 through 6 {
+      .col-#{$i} {
+        width: ((100%/3))* $i;
+        height: auto ;
+        @include flexbox;
+        align-items: center;
+        justify-content: center;
+        a{
+          width:100% ;
+          @include flexbox;
+          align-items: center;
+          justify-content: center;
+          img{
+            min-width: 100%;
+            min-height: 100%;
+            overflow-x: hidden;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
