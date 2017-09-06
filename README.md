@@ -1,3 +1,6 @@
 # travelplanner
-Website for Travel-geeks / practicing SASS, RWD, JS (coming soon); mobile first approach
-visit: https://anielkapa.github.io/TravelPlanner/
+Website for Travel-geeks. 
+Practicing following:
+### SASS, GRID, FLEXBOX and RWD; mobile first approach
+
+#### visit: https://anielkapa.github.io/TravelPlanner/
