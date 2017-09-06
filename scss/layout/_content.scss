@@ -25,7 +25,7 @@
       img {
         position: absolute;
         top: 0;
-        left: -2rem;
+       
         height: nth($width-viewport, 4)/(1920/1280);
         border: 0;
         vertical-align: middle;
@@ -44,19 +44,10 @@
       justify-content: space-around;
       align-items: flex-start;
       align-content: flex-start;
-      @include breakpoint (small-mobile) {}
-      @include breakpoint (mobiles-tablets) {
-        margin-left: nth($margin-left, 1);
-      }
-      @include breakpoint (medium-screens) {
-        margin-left: nth($margin-left, 1);
-      }
-      @include breakpoint (wide-screens) {
-        margin-left: nth($margin-left, 2);
-      }
     }
 
     &_content-socialmedia {
+      margin-top: nth($margin-left, 2);
       align-self: stretch;
       width: nth($width-viewport, 2);
       border-bottom: 1px solid black;

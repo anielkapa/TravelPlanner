@@ -1,0 +1,20 @@
+.row {
+  width: 100%;
+  height: auto;
+  @include flexbox;
+  margin: 5px;
+  @for $i from 1 through 6{
+    .col-#{$i} {
+      width: (((100%/2))* $i)- 2%;
+      height: auto;
+      @include flexbox;
+      margin: 1%;
+      @include breakpoint (wide-screens){
+      width: (((100%/6))* $i)- 2%;
+      }
+      @include breakpoint (medium-screens){
+      width: (((100%/6))* $i)- 2%;
+      }
+}
+}
+}
