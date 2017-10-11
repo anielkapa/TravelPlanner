@@ -42,7 +42,7 @@ sizeChange(mobile);
 
 let divWeather = $('.row div');
 let divId= divWeather.data("id");
-let weatherUrl = "http://api.openweathermap.org/data/2.5/weather?id=";
+let weatherUrl = "https://api.openweathermap.org/data/2.5/weather?id=";
 let apiKey = '&APPID=bf96a337b9028212ebff87de47bce404';
 let weatherIcons = divWeather.find("span div").addClass("hide");
 
