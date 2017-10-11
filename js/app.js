@@ -35,11 +35,49 @@ nav.addEventListener("mouseleave", function (e){
   hamburger.style.visibility="visible";
   hamburger.style.width="30%";
  }
-
 });
 
 mobile.addListener(sizeChange);
 sizeChange(mobile);
+
+let divWeather = $('.row div');
+let divId= divWeather.data("id");
+let weatherUrl = "http://api.openweathermap.org/data/2.5/weather?id=";
+let apiKey = '&APPID=bf96a337b9028212ebff87de47bce404';
+let weatherIcons = divWeather.find("span div").addClass("hide");
+
+
+
+divWeather.on("mouseenter", function (e){
+let dataWeatherId = $(this).data("id");
+let thisDiv = $(this);
+$.ajax({
+  url: weatherUrl + dataWeatherId + apiKey,
+  method: "GET"
+}).done(function(response) {
+  let weatherNow = response['weather'];
+  let temperatureNow = response['main'];
+  for (var key in weatherNow) {
+    let weatherDescprition = weatherNow[key]['description'];
+    thisDiv.attr("data-weather", weatherDescprition);
+if (thisDiv.attr("data-weather")=== 'scattered clouds' ) {
+  let thisWeatherIcon = thisDiv.find('.weather');
+//  console.log(pictureWeather);
+//  pictureWeather.attr('src', "../TravelPlanner/images/weather.png");
+}
+  }
+  for (var key in temperatureNow) {
+    let temperatureLeverl = temperatureNow['temp'];
+    temperatureLeverl= Math.round(temperatureLeverl-273);
+    thisDiv.attr("data-temp", temperatureLeverl);
+    thisDiv.find('p').text(`${temperatureLeverl} °C`);
+  }
+}).fail(function(error) {
+  console.log(error);
+});
+    });
+
+
 
 
     });
