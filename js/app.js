@@ -44,9 +44,8 @@ let divWeather = $('.row div');
 let divId= divWeather.data("id");
 let weatherUrl = "https://api.openweathermap.org/data/2.5/weather?id=";
 let apiKey = '&APPID=bf96a337b9028212ebff87de47bce404';
-let weatherIcons = divWeather.find("span div").addClass("hide");
-
-
+let weatherIcons = divWeather.find("span div");
+weatherIcons.addClass("hide");
 
 divWeather.on("mouseenter", function (e){
 let dataWeatherId = $(this).data("id");
@@ -60,10 +59,23 @@ $.ajax({
   for (var key in weatherNow) {
     let weatherDescprition = weatherNow[key]['description'];
     thisDiv.attr("data-weather", weatherDescprition);
-if (thisDiv.attr("data-weather")=== 'scattered clouds' ) {
-  let thisWeatherIcon = thisDiv.find('.weather');
-//  console.log(pictureWeather);
-//  pictureWeather.attr('src', "../TravelPlanner/images/weather.png");
+if (thisDiv.attr("data-weather")=== 'few clouds' ) {
+    thisDiv.find("span .few_clouds").removeClass("hide");
+}
+if (thisDiv.attr("data-weather")=== "clear sky" ) {
+    thisDiv.find("span .sun").removeClass("hide");
+}
+if (thisDiv.attr("data-weather")=== 'shower rain' || thisDiv.attr("data-weather")=== 'rain') {
+    thisDiv.find("span .rain").removeClass("hide");
+}
+if (thisDiv.attr("data-weather")=== 'scattered clouds' || thisDiv.attr("data-weather")=== 'broken clouds') {
+    thisDiv.find("span .clouds").removeClass("hide");
+}
+if (thisDiv.attr("data-weather")=== 'snow' ) {
+    thisDiv.find("span .snow").removeClass("hide");
+}
+if (thisDiv.attr("data-weather")=== 'mist' || thisDiv.attr("data-weather")=== 'haze' ) {
+    thisDiv.find("span .night").removeClass("hide");
 }
   }
   for (var key in temperatureNow) {
@@ -76,8 +88,5 @@ if (thisDiv.attr("data-weather")=== 'scattered clouds' ) {
   console.log(error);
 });
     });
-
-
-
 
     });

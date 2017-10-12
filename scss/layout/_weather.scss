@@ -1,0 +1,63 @@
+a{
+  span{
+    flex-flow: wrap;
+    margin: 2px;
+    width: 90%;
+    align-content: center;
+    div{
+      width: 60%;
+      height: 80px;
+    }
+    .hide{
+      display: none;
+    }
+    .storm{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -160px -20px;
+    }
+    .rain{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -45px -120px;
+    }
+    .clouds{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -165px -120px;
+    }
+    .sun{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -45px -30px;
+    }
+    .snow{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -45px -230px;
+    }
+    .wind{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -165px -230px;
+    }
+    .night{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -45px -340px;
+    }
+    .few_clouds{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -165px -340px;
+    }
+  }
+}
