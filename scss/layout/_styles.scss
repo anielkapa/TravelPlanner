@@ -68,19 +68,19 @@ $break-large: 1024px; // desktops and laptops
 html, body {
   font-family: nth($main_font,1);
   @include breakpoint (small-mobile){
-    font-size: 12px;
+    font-size: 10px;
     width:100vw;
   }
   @include breakpoint (mobiles-tablets){
-    font-size: 14px;
+    font-size: 12px;
     width:100vw;
   }
   @include breakpoint (medium-screens){
-    font-size: 16px;
+    font-size: 14px;
     width:100vw;
   }
   @include breakpoint (wide-screens){
-    font-size: 18px;
+    font-size: 16px;
     width:100vw;
   }
 }
@@ -92,7 +92,7 @@ $padding-content: 10px, 20px, 50px, 70px;
 /*width, height*/
 $max-width: 250px;
 $min-width: 100px;
-$max-height: 50px;
-$width-viewport: 30vw, 70vw, 90vw, 100vw, 110vw;
-$width-percentage: 100%;
+$max-height: 50px, 80px;
+$width-viewport: 30vw, 70vw, 90vw, 100vw, 110vw, 50vw;
+$width-percentage: 100%, 90%, 77%;
 $height-percentage: 55%, 100%;

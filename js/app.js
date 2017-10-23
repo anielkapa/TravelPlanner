@@ -59,24 +59,48 @@ $.ajax({
   for (var key in weatherNow) {
     let weatherDescprition = weatherNow[key]['description'];
     thisDiv.attr("data-weather", weatherDescprition);
-if (thisDiv.attr("data-weather")=== 'few clouds' ) {
-    thisDiv.find("span .few_clouds").removeClass("hide");
-}
-if (thisDiv.attr("data-weather")=== "clear sky" ) {
-    thisDiv.find("span .sun").removeClass("hide");
-}
-if (thisDiv.attr("data-weather")=== 'shower rain' || thisDiv.attr("data-weather")=== 'rain') {
-    thisDiv.find("span .rain").removeClass("hide");
-}
-if (thisDiv.attr("data-weather")=== 'scattered clouds' || thisDiv.attr("data-weather")=== 'broken clouds') {
-    thisDiv.find("span .clouds").removeClass("hide");
-}
-if (thisDiv.attr("data-weather")=== 'snow' ) {
-    thisDiv.find("span .snow").removeClass("hide");
-}
-if (thisDiv.attr("data-weather")=== 'mist' || thisDiv.attr("data-weather")=== 'haze' ) {
-    thisDiv.find("span .night").removeClass("hide");
-}
+    switch (thisDiv.attr("data-weather")){
+      case 'few clouds':
+            thisDiv.find("span .few_clouds").removeClass("hide");
+            break;
+      case "clear sky":
+            thisDiv.find("span .sun").removeClass("hide");
+            break;
+      case 'shower rain':
+      case 'rain':
+      case 'moderate rain':
+      case 'very heavy rain':
+      case 'shower rain':
+      case 'drizzle':
+      case 'drizzle rain':
+            thisDiv.find("span .rain").removeClass("hide");
+            break;
+      case 'scattered clouds':
+      case 'broken clouds':
+      case 'overcast clouds':
+            thisDiv.find("span .clouds").removeClass("hide");
+            break;
+      case 'snow':
+      case 'sleet':
+      case 'light snow':
+            thisDiv.find("span .snow").removeClass("hide");
+            break;
+      case 'mist':
+      case 'haze':
+      case 'fog':
+      case 'smoke':
+      case 'sand':
+      case 'dust':
+            thisDiv.find("span .night").removeClass("hide");
+            break;
+      case 'storm':
+            thisDiv.find("span .storm").removeClass("hide");
+            break;
+      default:
+            thisDiv.find("span .text").removeClass("hide");
+            let text = thisDiv.attr("data-weather");
+            thisDiv.find('span .text').text(text);
+    }
   }
   for (var key in temperatureNow) {
     let temperatureLeverl = temperatureNow['temp'];
