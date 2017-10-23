@@ -68,7 +68,9 @@ $.ajax({
             break;
       case 'shower rain':
       case 'rain':
+      case 'light rain':
       case 'moderate rain':
+      case 'heavy intensity rain':
       case 'very heavy rain':
       case 'shower rain':
       case 'drizzle':
