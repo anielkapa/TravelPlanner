@@ -5,12 +5,13 @@ let nav =document.querySelector("nav");
 let ul = nav.querySelector("ul");
 let header = document.querySelector("header");
 
-let mobile = window.matchMedia("screen and (max-width:375px)");
+let mobile = window.matchMedia("(max-width:375px)");
 console.log(mobile);
+console.log(hamburger);
 let sizeChange = function (mobile){
  if (mobile.matches) {
   nav.style.width="100%";
-  nav.style.height="5vh";
+  nav.style.height="10vh";
  }
 }
 
@@ -75,6 +76,7 @@ $.ajax({
       case 'shower rain':
       case 'drizzle':
       case 'drizzle rain':
+      case 'light intensity rain':
             thisDiv.find("span .rain").removeClass("hide");
             break;
       case 'scattered clouds':
