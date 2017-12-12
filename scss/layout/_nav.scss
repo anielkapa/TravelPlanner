@@ -21,18 +21,24 @@ header {
   #logo {
     width:100%;
     height: 10vw;
-    background-image: url("../images/TRAVEL.png");
+    background-image: url('../images/hamburger.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    opacity: 0.5;
     @include breakpoint (mobiles-tablets){
       width: 20%;
+      background-image: url('../images/hamburger.png');
     };
     @include breakpoint (medium-screens){
       width: 20%;
+      background-image: url("../images/TRAVEL.png");
+      opacity: 1;
     };
     @include breakpoint (wide-screens){
       width: 30%;
+      background-image: url("../images/TRAVEL.png");
+      opacity: 1;
     };
   }
 

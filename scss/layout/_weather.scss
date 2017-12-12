@@ -1,0 +1,64 @@
+a{
+  span{
+    flex-flow: wrap;
+    flex-direction: column;
+    width: nth($width-percentage,2);
+    align-content: center;
+    text-align: center;
+    div{
+      width: nth($width-percentage,3);
+      height: nth($max-height,2);
+    }
+    .hide{
+      display: none;
+    }
+    .storm{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -160px -20px;
+    }
+    .rain{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: 15px -120px;
+    }
+    .clouds{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -165px -120px;
+    }
+    .sun{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -45px -30px;
+    }
+    .snow{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -45px -230px;
+    }
+    .wind{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -165px -230px;
+    }
+    .night{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -45px -340px;
+    }
+    .few_clouds{
+      background-image: url("../images/pattern.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-position: -165px -340px;
+    }
+  }
+}
