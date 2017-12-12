@@ -5,12 +5,13 @@ let nav =document.querySelector("nav");
 let ul = nav.querySelector("ul");
 let header = document.querySelector("header");
 
-let mobile = window.matchMedia("screen and (max-width:375px)");
+let mobile = window.matchMedia("(max-width:375px)");
 console.log(mobile);
+console.log(hamburger);
 let sizeChange = function (mobile){
  if (mobile.matches) {
   nav.style.width="100%";
-  nav.style.height="5vh";
+  nav.style.height="10vh";
  }
 }
 
@@ -42,11 +43,10 @@ sizeChange(mobile);
 
 let divWeather = $('.row div');
 let divId= divWeather.data("id");
-let weatherUrl = "http://api.openweathermap.org/data/2.5/weather?id=";
+let weatherUrl = "https://api.openweathermap.org/data/2.5/weather?id=";
 let apiKey = '&APPID=bf96a337b9028212ebff87de47bce404';
-let weatherIcons = divWeather.find("span div").addClass("hide");
-
-
+let weatherIcons = divWeather.find("span div");
+weatherIcons.addClass("hide");
 
 divWeather.on("mouseenter", function (e){
 let dataWeatherId = $(this).data("id");
@@ -60,11 +60,51 @@ $.ajax({
   for (var key in weatherNow) {
     let weatherDescprition = weatherNow[key]['description'];
     thisDiv.attr("data-weather", weatherDescprition);
-if (thisDiv.attr("data-weather")=== 'scattered clouds' ) {
-  let thisWeatherIcon = thisDiv.find('.weather');
-//  console.log(pictureWeather);
-//  pictureWeather.attr('src', "../TravelPlanner/images/weather.png");
-}
+    switch (thisDiv.attr("data-weather")){
+      case 'few clouds':
+            thisDiv.find("span .few_clouds").removeClass("hide");
+            break;
+      case "clear sky":
+            thisDiv.find("span .sun").removeClass("hide");
+            break;
+      case 'shower rain':
+      case 'rain':
+      case 'light rain':
+      case 'moderate rain':
+      case 'heavy intensity rain':
+      case 'very heavy rain':
+      case 'shower rain':
+      case 'drizzle':
+      case 'drizzle rain':
+      case 'light intensity rain':
+            thisDiv.find("span .rain").removeClass("hide");
+            break;
+      case 'scattered clouds':
+      case 'broken clouds':
+      case 'overcast clouds':
+            thisDiv.find("span .clouds").removeClass("hide");
+            break;
+      case 'snow':
+      case 'sleet':
+      case 'light snow':
+            thisDiv.find("span .snow").removeClass("hide");
+            break;
+      case 'mist':
+      case 'haze':
+      case 'fog':
+      case 'smoke':
+      case 'sand':
+      case 'dust':
+            thisDiv.find("span .night").removeClass("hide");
+            break;
+      case 'storm':
+            thisDiv.find("span .storm").removeClass("hide");
+            break;
+      default:
+            thisDiv.find("span .text").removeClass("hide");
+            let text = thisDiv.attr("data-weather");
+            thisDiv.find('span .text').text(text);
+    }
   }
   for (var key in temperatureNow) {
     let temperatureLeverl = temperatureNow['temp'];
@@ -76,8 +116,5 @@ if (thisDiv.attr("data-weather")=== 'scattered clouds' ) {
   console.log(error);
 });
     });
-
-
-
 
     });
