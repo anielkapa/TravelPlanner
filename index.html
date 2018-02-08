@@ -546,6 +546,11 @@
 </body>
 <script src="js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
 </html>
 -
