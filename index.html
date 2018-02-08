@@ -549,8 +549,15 @@
 <script>
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js');
-}
+      navigator.serviceWorker.register('sw.js').then(registration => {
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch( err => {
+      //registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  }else {
+    console.log('No service-worker on this browser');
+  }
 </script>
 </html>
 -
