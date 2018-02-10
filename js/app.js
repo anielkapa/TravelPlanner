@@ -17,22 +17,31 @@ let sizeChange = function (mobile){
  }
 }
 
-// if ('serviceWorker' in navigator) {
-//   navigator.serviceWorker.register('./sw.js');
-//
-//   // Warm up the cache on that very first use
-//   if (!navigator.serviceWorker.controller) {
-//     navigator.serviceWorker.addEventListener('controllerchange', function changeListener() {
-//       // New worker has claimed, warm up the caches
-//       flickr.search(searchTerm, {
-//         headers: {'x-cache-warmup': '1'}
-//       });
-//
-//       // We only care about this once.
-//       navigator.serviceWorker.removeEventListener('controllerchange', changeListener);
-//     });
-//   }
-// }
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(function(reg) {
+    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+  }).catch( err => {
+    //registration failed :(
+    console.log('ServiceWorker registration failed: ', err);
+  });
+
+  // Warm up the cache on that very first use
+  // if (!navigator.serviceWorker.controller) {
+  //   navigator.serviceWorker.addEventListener('controllerchange', function changeListener() {
+  //     // New worker has claimed, warm up the caches
+  //     flickr.search(searchTerm, {
+  //       headers: {'x-cache-warmup': '1'}
+  //     });
+  //
+  //     // We only care about this once.
+  //     navigator.serviceWorker.removeEventListener('controllerchange', changeListener);
+  //   });
+  // }
+}
+// if (!navigator.serviceWorker){
+//   console.log('No service-worker on this browser');
+//   return;
+// };
 
 hamburger.addEventListener("click", function (e) {
   if (nav.style.display==="none" || nav.style.visibility==="hidden") {
