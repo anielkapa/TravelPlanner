@@ -1,68 +1,64 @@
-var CACHE_NAME = 'cache-v1';
-var CACHED_URLS = [
+var cacheName = 'cache-v1';
+var filesToCache = [
   '/index.html',
   'js/app.js',
   'css/main.css'
 ];
 
-self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      return cache.addAll(CACHED_URLS);
+self.addEventListener('install', function(e) {
+  console.log('[ServiceWorker] Install');
+  e.waitUntil(
+    caches.open(cacheName).then(function(cache) {
+      console.log('[ServiceWorker] Caching app shell');
+      return cache.addAll(filesToCache);
     })
   );
 });
 
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    fetch(event.request).catch(function() {
-      return caches.match(event.request).then(function(response) {
-        if (response) {
-          return response;
-        } else if (event.request.headers.get('accept').includes('text/html')) {
-          return caches.match('/index.html'); //obsługa wejścia pod rootowy adres domeny
+self.addEventListener('activate', function(e) {
+  console.log('[ServiceWorker] Activate');
+  e.waitUntil(
+    caches.keys().then(function(keyList) {
+      return Promise.all(keyList.map(function(key) {
+        if (key !== cacheName && key !== dataCacheName) {
+          console.log('[ServiceWorker] Removing old cache', key);
+          return caches.delete(key);
         }
-      });
+      }));
     })
   );
-});
+  return self.clients.claim();
+  });
 
-//
-//
-// const staticCacheName = 'v1::static';
-//
-// self.addEventListener('install', e => {
-//   e.waitUntil(
-//     caches.open(staticCacheName).then(cache => {
-//       return cache.addAll([
-//         '/',
-//         'js/app.js',
-//         'css/main.css'
-//       ]).then(() => self.skipWaiting());
-//     })
-//   );
-// });
-// self.addEventListener('activate', event => {
-//   event.waitUntil(
-//     caches.keys().then(function(cacheNames) {
-//       return Promise.all(
-//         cacheNames.filter(function(cacheName) {
-//           return cacheName.startsWith('v1::') &&
-//                  !allCaches.includes(cacheName);
-//         }).map(function(cacheName) {
-//           return caches.delete(cacheName);
-//         })
-//       );
-//     })
-//   );
-// });
-//
-// // when the browser fetches a url, either response with the cached object or go ahead and fetch the actual url
-// self.addEventListener('fetch', event => {
-//   event.respondWith(
-//     // ensure we check the *right* cache to match against
-//     caches.open(staticCacheName).then(cache => {
-//       return response || fetch(event.request);
-//     })
-//   );
-// });
+  self.addEventListener('fetch', function(e) {
+    console.log('[Service Worker] Fetch', e.request.url);
+    var dataUrl = 'https://query.yahooapis.com/v1/public/yql';
+    if (e.request.url.indexOf(dataUrl) > -1) {
+      /*
+       * When the request URL contains dataUrl, the app is asking for fresh
+       * weather data. In this case, the service worker always goes to the
+       * network and then caches the response. This is called the "Cache then
+       * network" strategy:
+       * https://jakearchibald.com/2014/offline-cookbook/#cache-then-network
+       */
+      e.respondWith(
+        caches.open(dataCacheName).then(function(cache) {
+          return fetch(e.request).then(function(response){
+            cache.put(e.request.url, response.clone());
+            return response;
+          });
+        })
+      );
+    } else {
+      /*
+       * The app is asking for app shell files. In this scenario the app uses the
+       * "Cache, falling back to the network" offline strategy:
+       * https://jakearchibald.com/2014/offline-cookbook/#cache-falling-back-to-network
+       */
+      e.respondWith(
+        caches.match(e.request).then(function(response) {
+          return response || fetch(e.request);
+        })
+      );
+    }
+  });
