@@ -18,7 +18,7 @@ let sizeChange = function (mobile){
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').then(function(reg) {
+  navigator.serviceWorker.register('/sw.js').then(function(reg) {
     console.log('ServiceWorker registration successful with scope: ', registration.scope);
   }).catch( err => {
     //registration failed :(
