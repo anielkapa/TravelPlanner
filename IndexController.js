@@ -1,13 +1,14 @@
 
-function openDatabase() {
-  // If the browser doesn't support service worker,
-  // we don't care about having a database
-  if (!navigator.serviceWorker) {
-    return Promise.resolve();
-  }
-}
-
-export default function IndexController(container) {
+// function openDatabase() {
+//   // If the browser doesn't support service worker,
+//   // we don't care about having a database
+//   if (!navigator.serviceWorker) {
+//     return Promise.resolve();
+//   }
+// }
+//
+//export default function IndexController(container)
+function IndexController(container) {
   this._container = container;
   var indexController = this;
 }
