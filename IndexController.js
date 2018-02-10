@@ -18,7 +18,7 @@ IndexController.prototype._registerServiceWorker = function() {
     return;
   };
   var indexController = this;
-  navigator.serviceWorker.register('/sw.js').then(function(reg) {
+  navigator.serviceWorker.register('sw.js').then(function(reg) {
     console.log('ServiceWorker registration successful with scope: ', registration.scope);
   }).catch( err => {
     //registration failed :(
